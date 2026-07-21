@@ -1,0 +1,6 @@
+{
+  "name": "Valtreon Media Network",
+  "description": "The premium digital portal and brand hub for Valtreon Media Network, showcasing next-generation media assets, creator networks, and tailored advertising and sponsorship solutions.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
