@@ -8,6 +8,8 @@ import SimulatorOverlay from './components/SimulatorOverlay';
 import CreativeRoster from './components/CreativeRoster';
 import PrivateBriefingForm from './components/PrivateBriefingForm';
 import Navbar from './components/Navbar';
+import HeroSection from './components/HeroSection';
+import TrustedBrands from './components/TrustedBrands';
 import {
   Menu,
   X,
@@ -111,67 +113,17 @@ export default function App() {
         reducedMotion={reducedMotion}
       />
 
-      {/* 4. HERO SECTION (The Silent Cinematic Statement) */}
-      <section id="hero-curated-horizon" className="py-20 md:py-32 w-full max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
-          {/* Typographic Asymmetric Header */}
-          <div className="lg:col-span-8 space-y-6" id="hero-typographic-statements">
-            <div className="flex items-center gap-2">
-              <span className="font-mono text-[10px] uppercase text-zinc-400 tracking-widest">[ INTRODUCTION // INTELLECTUAL_LUXURY ]</span>
-              <Sparkles className="w-3.5 h-3.5 text-[#9C8465]" />
-            </div>
-            
-            <h1 className="font-sans font-medium text-4xl md:text-6xl text-zinc-900 tracking-tighter leading-tight" id="hero-display-heading">
-              Bespoke media co-production and quiet, curated sponsorship ecosystems for discerning audiences.
-            </h1>
+      {/* 4. HERO SECTION (The Silent Cinematic Statement & Interactive Telemetry Ledger) */}
+      <HeroSection
+        onScheduleBriefing={() => setIsBottomSheetOpen(true)}
+        onReRunBoot={() => setBootSequenceActive(true)}
+        latency={latency}
+        reducedMotion={reducedMotion}
+        lowPowerMode={lowPowerMode}
+      />
 
-            <p className="font-sans text-base md:text-lg text-zinc-500 max-w-xl leading-relaxed">
-              We reject algorithmic noise. Valtreon partners signed cinematic directors, specialist editors, and investigative journalists with elite global brands to produce culture-defining editorial media.
-            </p>
-
-            <div className="flex flex-wrap gap-4 pt-4">
-              <a
-                href="#private-briefing-gate-card"
-                id="cta-hero-primary"
-                className="bg-zinc-900 hover:bg-[#9C8465] text-white hover:text-zinc-950 px-6 py-3 font-mono text-xs uppercase transition-all duration-300 rounded-none cursor-pointer"
-              >
-                [ Request Private Briefing ]
-              </a>
-              <button
-                onClick={() => setBootSequenceActive(true)}
-                id="btn-re-run-boot"
-                className="border border-zinc-300 hover:border-zinc-800 px-6 py-3 font-mono text-xs uppercase transition-all rounded-none text-zinc-600 hover:text-zinc-900"
-              >
-                [ Re-run Boot Sequence ]
-              </button>
-            </div>
-          </div>
-
-          {/* Quick Stats Bento Box Panel (The Physical Ledger Blueprint) */}
-          <div className="lg:col-span-4 border border-zinc-200 bg-white p-6 relative aspect-[4/5] flex flex-col justify-between" id="hero-bento-overview">
-            <div className="space-y-4">
-              <span className="font-mono text-[9px] text-zinc-400 uppercase tracking-widest block">[ BRAND_GUARANTEE // DIGITAL_HYGIENE ]</span>
-              <div className="w-full h-[1px] bg-zinc-100" />
-              <h3 className="font-sans font-medium text-xl text-zinc-900">Zero Visual Contamination</h3>
-              <p className="font-sans text-xs text-zinc-500 leading-relaxed">
-                Valtreon operates under a strict, permanent digital hygiene directive. Our platforms commit to absolute silence: **zero popups, zero programmatic ad banners, and zero third-party tracking cookies.**
-              </p>
-            </div>
-
-            <div className="space-y-4">
-              <div className="border-t border-zinc-100 pt-4 flex justify-between items-center text-xs font-mono">
-                <span className="text-zinc-400">CREATIVE NETWORK:</span>
-                <span className="text-zinc-800 font-semibold">15 ELITE CO-PRODUCERS</span>
-              </div>
-              <div className="flex justify-between items-center text-xs font-mono">
-                <span className="text-zinc-400">LICENSING MODEL:</span>
-                <span className="text-zinc-800 font-semibold">DIRECT CONTRACT (B2B)</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* 4.5. TRUSTED BRANDS SECTION (Infinite Logo Marquee & Co-Production Alliances) */}
+      <TrustedBrands reducedMotion={reducedMotion} />
 
       {/* 5. PERFORMANCE & INTERACTIVE SIMULATOR SYSTEM BAR (The Controller Terminal) */}
       <section className="sticky top-16 z-30 w-full border-t border-b border-zinc-800 bg-[#0A0A0C] py-4" id="sim-control-wrapper">
