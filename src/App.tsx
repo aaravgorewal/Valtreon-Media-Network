@@ -12,6 +12,7 @@ import HeroSection from './components/HeroSection';
 import TrustedBrands from './components/TrustedBrands';
 import StatisticsSection from './components/StatisticsSection';
 import ServicesSection from './components/ServicesSection';
+import CaseStudiesSection from './components/CaseStudiesSection';
 import {
   Menu,
   X,
@@ -172,6 +173,14 @@ export default function App() {
           />
         </div>
       </section>
+
+      {/* 9. AUDITED CASE STUDIES & PERFORMANCE SHOWCASE */}
+      <CaseStudiesSection
+        onScheduleBriefing={() => setIsBottomSheetOpen(true)}
+        latency={latency}
+        reducedMotion={reducedMotion}
+        lowPowerMode={lowPowerMode}
+      />
 
       {/* 9. MOBILE SWIPE & SNAP INTERACTION PLAYGROUND (Tactile Gesture Demo Module) */}
       <section className="py-16 bg-[#F3F4F6] border-b border-zinc-200 md:hidden" id="mobile-swipe-playground">
