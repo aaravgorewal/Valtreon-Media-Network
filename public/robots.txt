@@ -1,0 +1,16 @@
+# VMN Studios (Valtreon Media Network) Robots File
+# https://vmnstudios.com/sitemap.xml
+
+User-agent: *
+Allow: /
+Allow: /about
+Allow: /services
+Allow: /case-studies
+Allow: /creators
+Allow: /testimonials
+Allow: /faq
+Allow: /briefing
+
+# Host & Sitemap Location
+Host: https://vmnstudios.com
+Sitemap: https://vmnstudios.com/sitemap.xml

@@ -9,6 +9,8 @@ import SimulatorOverlay from './components/SimulatorOverlay';
 import StatisticsSection from './components/StatisticsSection';
 import ServicesSection from './components/ServicesSection';
 import Footer from './components/Footer';
+import SEOManager from './components/SEOManager';
+import Breadcrumbs from './components/Breadcrumbs';
 import { X, Calendar } from 'lucide-react';
 
 // Code Splitting / Dynamic Imports for Below-The-Fold Sections
@@ -18,6 +20,7 @@ const TestimonialsSection = lazy(() => import('./components/TestimonialsSection'
 const FaqSection = lazy(() => import('./components/FaqSection'));
 const FinalCtaSection = lazy(() => import('./components/FinalCtaSection'));
 const PrivateBriefingForm = lazy(() => import('./components/PrivateBriefingForm'));
+const AboutPage = lazy(() => import('./app/about/page'));
 
 // Fallback skeleton loader component
 const ComponentFallback = () => (
@@ -50,6 +53,16 @@ export default function App() {
   const simulatedTimeMs = latency === 'fast' ? 120 : latency === 'delayed' ? 1500 : 500;
 
   // Touch gesture handler mock for swipe demo cards
+  const [currentHash, setCurrentHash] = useState<string>(() => window.location.hash || '#home');
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      setCurrentHash(window.location.hash || '#home');
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
   const handleTouchStart = (e: React.TouchEvent) => {
     setTouchStartX(e.targetTouches[0].clientX);
   };
@@ -105,6 +118,47 @@ export default function App() {
         lowPowerMode ? 'bg-[#FAF9F6]' : 'bg-[#F9F9FB]'
       } text-zinc-900`}
     >
+      {/* 0. DYNAMIC SEO & STRUCTURED METADATA ENGINE */}
+      <SEOManager
+        title={
+          currentHash === '#about'
+            ? 'About VMN Studios | Sovereign Co-Production Atelier'
+            : currentHash === '#services'
+            ? 'Sovereign Services | VMN Studios 35mm & Telemetry'
+            : currentHash === '#case-studies'
+            ? 'Audited Case Studies | VMN Studios Media Telemetry'
+            : 'VMN Studios | Sovereign Co-Production & Zero-Ad Telemetry Atelier'
+        }
+        canonicalUrl={
+          currentHash === '#about'
+            ? 'https://vmnstudios.com/about'
+            : currentHash === '#services'
+            ? 'https://vmnstudios.com/services'
+            : currentHash === '#case-studies'
+            ? 'https://vmnstudios.com/case-studies'
+            : 'https://vmnstudios.com'
+        }
+        breadcrumbs={[
+          { name: 'Home', item: 'https://vmnstudios.com' },
+          ...(currentHash && currentHash !== '#home'
+            ? [
+                {
+                  name: currentHash.replace('#', '').toUpperCase().replace('-', ' '),
+                  item: `https://vmnstudios.com/${currentHash.replace('#', '')}`
+                }
+              ]
+            : [])
+        ]}
+      />
+
+      {/* ACCESSIBILITY: SKIP NAVIGATION BYPASS LINK */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-6 focus:py-3 focus:bg-[#9C8465] focus:text-white focus:font-mono focus:text-xs focus:font-bold focus:uppercase focus:ring-2 focus:ring-white shadow-2xl"
+      >
+        Skip to main content
+      </a>
+
       {/* 1. INITIAL PAGE BOOT LOADER (First Paint Synchronization) */}
       {bootSequenceActive && (
         <InitialLoader onComplete={() => setBootSequenceActive(false)} />
@@ -117,7 +171,31 @@ export default function App() {
         reducedMotion={reducedMotion}
       />
 
-      {/* 4. HERO SECTION (The Silent Cinematic Statement & Interactive Telemetry Ledger) */}
+      {/* 3. ACCESSIBLE BREADCRUMB NAVIGATION TRAIL */}
+      <div className="pt-16">
+        <Breadcrumbs
+          items={[
+            { label: 'VMN PORTAL', href: 'https://vmnstudios.com' },
+            ...(currentHash && currentHash !== '#home'
+              ? [
+                  {
+                    label: currentHash.replace('#', '').toUpperCase().replace('-', ' '),
+                    href: `https://vmnstudios.com/${currentHash.replace('#', '')}`,
+                    isCurrent: true
+                  }
+                ]
+              : [{ label: 'SOVEREIGN CO-PRODUCTION', href: 'https://vmnstudios.com', isCurrent: true }])
+          ]}
+          onNavigate={(href) => {
+            if (href.includes('/about')) window.location.hash = 'about';
+            else window.location.hash = 'home';
+          }}
+        />
+      </div>
+
+      {/* 4. MAIN CONTENT LANDMARK */}
+      <main id="main-content" tabIndex={-1} className="outline-none">
+        {/* HERO SECTION (The Silent Cinematic Statement & Interactive Telemetry Ledger) */}
       <HeroSection
         onScheduleBriefing={() => setIsBottomSheetOpen(true)}
         onReRunBoot={() => setBootSequenceActive(true)}
@@ -258,6 +336,7 @@ export default function App() {
           <PrivateBriefingForm onSuccessSubmit={() => setBriefingFormSuccess(true)} />
         </section>
       </Suspense>
+      </main>
 
       {/* 11. DETACHED TOUCH BOTTOM SHEET DRAWER (The Mechanical Scheduler Drawer) */}
       {isBottomSheetOpen && (
