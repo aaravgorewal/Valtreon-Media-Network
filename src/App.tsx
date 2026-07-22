@@ -16,6 +16,7 @@ import CaseStudiesSection from './components/CaseStudiesSection';
 import TestimonialsSection from './components/TestimonialsSection';
 import FaqSection from './components/FaqSection';
 import FinalCtaSection from './components/FinalCtaSection';
+import Footer from './components/Footer';
 import {
   Menu,
   X,
@@ -328,54 +329,11 @@ export default function App() {
         </div>
       )}
 
-      {/* 12. TECHNICAL FOOTER (The SMART Objective Ledger) */}
-      <footer id="global-portal-footer" className="bg-[#0A0A0C] border-t border-zinc-900 py-16 text-zinc-500 font-mono text-xs">
-        <div className="w-full max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12">
-          
-          <div className="space-y-4">
-            <span className="text-zinc-400 font-semibold uppercase">[ SMART_OBJECTIVE_LEDGER ]</span>
-            <div className="space-y-2 text-[10px]">
-              <div className="flex justify-between border-b border-zinc-900 pb-1.5">
-                <span>01 // INBOUND SQL TARGET RATE:</span>
-                <span className="text-zinc-300">≥ 70% SQL_ACCURACY</span>
-              </div>
-              <div className="flex justify-between border-b border-zinc-900 pb-1.5">
-                <span>02 // SECURED ENTERPRISE CONTRACTS:</span>
-                <span className="text-zinc-300">ACV ≥ $75K PER ALLIANCE</span>
-              </div>
-              <div className="flex justify-between">
-                <span>03 // LIGHTHOUSE CI AUDITS:</span>
-                <span className="text-zinc-300">≥ 95 PERFORMANCE</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="space-y-4">
-            <span className="text-zinc-400 font-semibold uppercase">[ PHYSICAL_LOCATION_COORDS ]</span>
-            <p className="text-[10px] leading-relaxed text-zinc-500 font-mono">
-              VALTREON STUDIO DIVISION // 404 CANYON GATES ROUTE  
-              SUITE 108 // ARCHITECTURAL SILENCE SECTOR  
-              [ STATUS: ENVIRONMENT_ONLINE ]
-            </p>
-          </div>
-
-          <div className="space-y-4">
-            <span className="text-zinc-400 font-semibold uppercase">[ SYSTEM_HYGIENE_GUARANTEE ]</span>
-            <p className="text-[10px] leading-relaxed text-zinc-500 font-mono">
-              VMN portal operates in absolute offline-cached compliance. Strictly no cookies or programmatic overlays are executed on our pages. Developed with uncompromised Swiss structural guidelines.
-            </p>
-          </div>
-        </div>
-
-        {/* Legal Row */}
-        <div className="w-full max-w-7xl mx-auto px-6 border-t border-zinc-900 mt-12 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-[9px] text-zinc-600">
-          <span>©2026 VALTREON MEDIA NETWORK INC. ALL RIGHTS RESERVED.</span>
-          <div className="flex gap-6">
-            <a href="#vmn-master-canvas" className="hover:text-zinc-400">RESTORE TOP COORDINATE</a>
-            <span>[ SOT_CONTRACT: CLASSIFIED ]</span>
-          </div>
-        </div>
-      </footer>
+      {/* 13. GLOBAL PRODUCTION FOOTER */}
+      <Footer
+        onScheduleBriefing={() => setIsBottomSheetOpen(true)}
+        reducedMotion={reducedMotion}
+      />
     </div>
   );
 }
