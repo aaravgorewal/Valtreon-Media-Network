@@ -160,14 +160,15 @@ export default function App() {
         reducedMotion={reducedMotion}
       />
 
-      {/* 8. CREATIVE ROSTER & PORTFOLIO GRID (Light Stage - Tactile Touch exploration) */}
-      <section className="py-24 bg-white border-b border-zinc-200">
+      {/* 8. CREATIVE ROSTER & PORTFOLIO GRID (Cinematic Dark Canvas) */}
+      <section className="py-24 bg-[#0B0B0D] border-b border-[#222226] text-zinc-100">
         <div className="w-full max-w-7xl mx-auto px-6">
           <CreativeRoster
             creators={CREATORS}
             latency={latency}
             reducedMotion={reducedMotion}
             lowPowerMode={lowPowerMode}
+            onSelectCreatorForBriefing={() => setIsBottomSheetOpen(true)}
           />
         </div>
       </section>

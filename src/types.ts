@@ -9,6 +9,13 @@ export interface Creator {
   avatar: string;
   videoUrl: string;
   bio: string;
+  country?: string;
+  countryCode?: string;
+  platform?: string;
+  csat?: string;
+  specialty?: string;
+  badge?: string;
+  followersCount?: number; // In millions, e.g., 4.2
 }
 
 export interface Metric {
