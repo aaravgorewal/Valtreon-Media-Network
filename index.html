@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,19 +7,52 @@
     <meta name="description" content="VMN Studios delivers 35mm anamorphic brand films, 10,000-word deep research dossiers, and zero-cookie audited telemetry for luxury, hardware, and sovereign finance houses." />
     <meta name="keywords" content="VMN Studios, co-production, 35mm film, zero-ad telemetry, research dossiers, luxury media, Swiss horology, Dolby Atmos" />
     <meta name="theme-color" content="#080809" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://vmnstudios.com" />
     
+    <!-- DNS Preconnect & Image CDN Optimization -->
+    <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
+    <link rel="dns-prefetch" href="https://images.unsplash.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="VMN Studios | Sovereign Co-Production & Zero-Ad Telemetry Atelier" />
     <meta property="og:description" content="Sovereign media co-production, 35mm photography archives, and zero-ad telemetry for enterprise leaders." />
-    <meta property="og:image" content="/icon.png" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1200&q=80" />
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="VMN Studios | Sovereign Co-Production Atelier" />
     <meta name="twitter:description" content="Sovereign media co-production and zero-ad telemetry for global luxury and tech leaders." />
+
+    <!-- Schema.org JSON-LD Structured Data for SEO -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "VMN Studios",
+        "url": "https://vmnstudios.com",
+        "logo": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&h=400&q=80",
+        "description": "Sovereign co-production atelier specializing in 35mm brand films, research dossiers, and zero-ad telemetry.",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Rue du Rhône 42",
+          "addressLocality": "Geneva",
+          "postalCode": "1204",
+          "addressCountry": "CH"
+        },
+        "sameAs": [
+          "https://linkedin.com",
+          "https://twitter.com",
+          "https://vimeo.com"
+        ]
+      }
+    </script>
   </head>
-  <body class="bg-[#080809] text-zinc-100 antialiased">
+  <body class="bg-[#080809] text-zinc-100 antialiased selection:bg-[#9C8465]/30 selection:text-white">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
