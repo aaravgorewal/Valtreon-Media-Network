@@ -1,36 +1,33 @@
-import React, { useState, useEffect } from 'react';
-import { CREATORS, METRICS, CHART_DATA, DEMOGRAPHICS } from './data';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
+import { CREATORS } from './data';
 import { LatencyTier } from './types';
 import InitialLoader from './components/InitialLoader';
-import DecryptCounter from './components/DecryptCounter';
-import BespokeCharts from './components/BespokeCharts';
-import SimulatorOverlay from './components/SimulatorOverlay';
-import CreativeRoster from './components/CreativeRoster';
-import PrivateBriefingForm from './components/PrivateBriefingForm';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import TrustedBrands from './components/TrustedBrands';
+import SimulatorOverlay from './components/SimulatorOverlay';
 import StatisticsSection from './components/StatisticsSection';
 import ServicesSection from './components/ServicesSection';
-import CaseStudiesSection from './components/CaseStudiesSection';
-import TestimonialsSection from './components/TestimonialsSection';
-import FaqSection from './components/FaqSection';
-import FinalCtaSection from './components/FinalCtaSection';
 import Footer from './components/Footer';
-import {
-  Menu,
-  X,
-  Layers,
-  Sparkles,
-  Info,
-  Calendar,
-  Lock,
-  ArrowRight,
-  Shield,
-  Activity,
-  User,
-  Power
-} from 'lucide-react';
+import { X, Calendar } from 'lucide-react';
+
+// Code Splitting / Dynamic Imports for Below-The-Fold Sections
+const CreativeRoster = lazy(() => import('./components/CreativeRoster'));
+const CaseStudiesSection = lazy(() => import('./components/CaseStudiesSection'));
+const TestimonialsSection = lazy(() => import('./components/TestimonialsSection'));
+const FaqSection = lazy(() => import('./components/FaqSection'));
+const FinalCtaSection = lazy(() => import('./components/FinalCtaSection'));
+const PrivateBriefingForm = lazy(() => import('./components/PrivateBriefingForm'));
+
+// Fallback skeleton loader component
+const ComponentFallback = () => (
+  <div className="w-full py-16 bg-[#0B0B0D] border-b border-[#222226] flex items-center justify-center font-mono text-xs text-zinc-500">
+    <div className="flex items-center gap-3">
+      <div className="w-2 h-2 rounded-full bg-[#9C8465] animate-ping" />
+      <span>LOADING SOVEREIGN MODULE...</span>
+    </div>
+  </div>
+);
 
 export default function App() {
   // Page state controllers
@@ -166,49 +163,59 @@ export default function App() {
       />
 
       {/* 8. CREATIVE ROSTER & PORTFOLIO GRID (Cinematic Dark Canvas) */}
-      <section className="py-24 bg-[#0B0B0D] border-b border-[#222226] text-zinc-100">
-        <div className="w-full max-w-7xl mx-auto px-6">
-          <CreativeRoster
-            creators={CREATORS}
-            latency={latency}
-            reducedMotion={reducedMotion}
-            lowPowerMode={lowPowerMode}
-            onSelectCreatorForBriefing={() => setIsBottomSheetOpen(true)}
-          />
-        </div>
-      </section>
+      <Suspense fallback={<ComponentFallback />}>
+        <section className="py-24 bg-[#0B0B0D] border-b border-[#222226] text-zinc-100">
+          <div className="w-full max-w-7xl mx-auto px-6">
+            <CreativeRoster
+              creators={CREATORS}
+              latency={latency}
+              reducedMotion={reducedMotion}
+              lowPowerMode={lowPowerMode}
+              onSelectCreatorForBriefing={() => setIsBottomSheetOpen(true)}
+            />
+          </div>
+        </section>
+      </Suspense>
 
       {/* 9. AUDITED CASE STUDIES & PERFORMANCE SHOWCASE */}
-      <CaseStudiesSection
-        onScheduleBriefing={() => setIsBottomSheetOpen(true)}
-        latency={latency}
-        reducedMotion={reducedMotion}
-        lowPowerMode={lowPowerMode}
-      />
+      <Suspense fallback={<ComponentFallback />}>
+        <CaseStudiesSection
+          onScheduleBriefing={() => setIsBottomSheetOpen(true)}
+          latency={latency}
+          reducedMotion={reducedMotion}
+          lowPowerMode={lowPowerMode}
+        />
+      </Suspense>
 
       {/* 10. AUDITED EXECUTIVE TESTIMONIALS & SHOWREEL */}
-      <TestimonialsSection
-        onScheduleBriefing={() => setIsBottomSheetOpen(true)}
-        reducedMotion={reducedMotion}
-        lowPowerMode={lowPowerMode}
-      />
+      <Suspense fallback={<ComponentFallback />}>
+        <TestimonialsSection
+          onScheduleBriefing={() => setIsBottomSheetOpen(true)}
+          reducedMotion={reducedMotion}
+          lowPowerMode={lowPowerMode}
+        />
+      </Suspense>
 
       {/* 11. FREQUENTLY ASKED DIRECTIVES & FAQ */}
-      <FaqSection
-        onScheduleBriefing={() => setIsBottomSheetOpen(true)}
-        reducedMotion={reducedMotion}
-      />
+      <Suspense fallback={<ComponentFallback />}>
+        <FaqSection
+          onScheduleBriefing={() => setIsBottomSheetOpen(true)}
+          reducedMotion={reducedMotion}
+        />
+      </Suspense>
 
       {/* 12. FINAL SOVEREIGN CTA DIRECTIVE */}
-      <FinalCtaSection
-        onScheduleBriefing={() => setIsBottomSheetOpen(true)}
-        onOpenSimulator={() => {
-          const el = document.getElementById('sim-control-wrapper');
-          if (el) el.scrollIntoView({ behavior: 'smooth' });
-        }}
-        reducedMotion={reducedMotion}
-        lowPowerMode={lowPowerMode}
-      />
+      <Suspense fallback={<ComponentFallback />}>
+        <FinalCtaSection
+          onScheduleBriefing={() => setIsBottomSheetOpen(true)}
+          onOpenSimulator={() => {
+            const el = document.getElementById('sim-control-wrapper');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+          }}
+          reducedMotion={reducedMotion}
+          lowPowerMode={lowPowerMode}
+        />
+      </Suspense>
 
       {/* 9. MOBILE SWIPE & SNAP INTERACTION PLAYGROUND (Tactile Gesture Demo Module) */}
       <section className="py-16 bg-[#F3F4F6] border-b border-zinc-200 md:hidden" id="mobile-swipe-playground">
@@ -246,9 +253,11 @@ export default function App() {
       </section>
 
       {/* 10. PRIVATE BRIEFING GATES INTAKE FORM (The Call To Action Section) */}
-      <section className="py-24 w-full max-w-4xl mx-auto px-6" id="briefing-gate-section">
-        <PrivateBriefingForm onSuccessSubmit={() => setBriefingFormSuccess(true)} />
-      </section>
+      <Suspense fallback={<ComponentFallback />}>
+        <section className="py-24 w-full max-w-4xl mx-auto px-6" id="briefing-gate-section">
+          <PrivateBriefingForm onSuccessSubmit={() => setBriefingFormSuccess(true)} />
+        </section>
+      </Suspense>
 
       {/* 11. DETACHED TOUCH BOTTOM SHEET DRAWER (The Mechanical Scheduler Drawer) */}
       {isBottomSheetOpen && (
