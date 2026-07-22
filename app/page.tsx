@@ -1,6 +1,5 @@
 import React, { Suspense } from 'react';
-import type { Metadata } from 'next';
-import { siteMetadata } from './seo.config';
+import { siteMetadata, type Metadata } from './seo.config';
 import {
   HeroSectionPlaceholder,
   SimulatorSectionPlaceholder,

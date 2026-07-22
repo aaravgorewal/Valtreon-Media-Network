@@ -7,6 +7,7 @@ import BespokeCharts from './components/BespokeCharts';
 import SimulatorOverlay from './components/SimulatorOverlay';
 import CreativeRoster from './components/CreativeRoster';
 import PrivateBriefingForm from './components/PrivateBriefingForm';
+import Navbar from './components/Navbar';
 import {
   Menu,
   X,
@@ -103,109 +104,12 @@ export default function App() {
         <InitialLoader onComplete={() => setBootSequenceActive(false)} />
       )}
 
-      {/* 2. GLOBAL FIXED HEADER (The Swiss Grid Horizon) */}
-      <header
-        id="global-portal-header"
-        className="sticky top-0 z-40 w-full bg-white/80 backdrop-blur-md border-b border-zinc-200/60 h-16 flex items-center transition-all duration-300"
-      >
-        <div className="w-full max-w-7xl mx-auto px-6 flex justify-between items-center">
-          {/* Logo Brand Identifier */}
-          <a
-            href="/"
-            id="vmn-logo-home-link"
-            className="font-mono text-xs uppercase tracking-widest font-semibold flex items-center gap-2 text-zinc-900"
-          >
-            <Shield className="w-4 h-4 text-[#9C8465]" />
-            <span>VALTREON // M_N</span>
-          </a>
-
-          {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-8 font-mono text-[10px] uppercase tracking-wider text-zinc-500">
-            <a href="#services-horizon" className="hover:text-zinc-900 transition-colors">01. SERVICES</a>
-            <a href="#performance-dashboard" className="hover:text-zinc-900 transition-colors">02. PERFORMANCE</a>
-            <a href="#creative-roster-section" className="hover:text-zinc-900 transition-colors">03. CREATORS</a>
-            <a href="#private-briefing-gate-card" className="hover:text-zinc-900 transition-colors">04. INQUIRY_GATE</a>
-          </nav>
-
-          {/* Action CTAs */}
-          <div className="flex items-center gap-4">
-            <button
-              onClick={() => setIsBottomSheetOpen(true)}
-              id="cta-schedule-briefing"
-              className="hidden sm:flex bg-[#9C8465] hover:bg-opacity-90 text-white font-mono text-[10px] uppercase px-4 py-2 transition-all rounded-none"
-            >
-              [ SCHEDULE BRIEFING ]
-            </button>
-
-            {/* Mobile Menu Burger Trigger */}
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              id="mobile-menu-hamburger-trigger"
-              className="md:hidden p-2 text-zinc-600 hover:text-zinc-900"
-              aria-label="Toggle navigation overlay menu"
-              aria-expanded={isMobileMenuOpen}
-            >
-              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
-          </div>
-        </div>
-      </header>
-
-      {/* 3. MOBILE MENU OVERLAY (Tactile Drawer Swipe and Snap standard) */}
-      {isMobileMenuOpen && (
-        <div
-          id="mobile-navigation-overlay"
-          className="fixed inset-0 bg-zinc-950/90 backdrop-blur-md z-45 md:hidden flex flex-col justify-between p-8 pt-24"
-        >
-          <nav className="space-y-6 flex flex-col font-mono text-lg text-zinc-400">
-            <span className="text-[10px] uppercase text-zinc-600 tracking-widest">[ SECTION_NAVIGATION ]</span>
-            <a
-              href="#services-horizon"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="hover:text-white transition-colors"
-            >
-              01 // CORE SERVICES
-            </a>
-            <a
-              href="#performance-dashboard"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="hover:text-white transition-colors"
-            >
-              02 // PERFORMANCE METRICS
-            </a>
-            <a
-              href="#creative-roster-section"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="hover:text-white transition-colors"
-            >
-              03 // CREATOR ROSTER
-            </a>
-            <a
-              href="#private-briefing-gate-card"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="hover:text-white transition-colors"
-            >
-              04 // ALLIANCE GATEWAY
-            </a>
-          </nav>
-
-          <div className="space-y-4">
-            <button
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                setIsBottomSheetOpen(true);
-              }}
-              id="mobile-menu-cta-booking"
-              className="w-full bg-[#9C8465] py-3 text-white font-mono text-xs uppercase text-center rounded-none"
-            >
-              [ SCHEDULE PRIVATE MEETING ]
-            </button>
-            <span className="font-mono text-[8px] text-zinc-600 text-center block">
-              ©2026 VALTREON MEDIA NETWORK // MOBILE GATEWAY
-            </span>
-          </div>
-        </div>
-      )}
+      {/* 2. MASTER PORTAL NAVIGATION (Swiss Grid Sticky Horizon) */}
+      <Navbar
+        onScheduleBriefing={() => setIsBottomSheetOpen(true)}
+        latency={latency}
+        reducedMotion={reducedMotion}
+      />
 
       {/* 4. HERO SECTION (The Silent Cinematic Statement) */}
       <section id="hero-curated-horizon" className="py-20 md:py-32 w-full max-w-7xl mx-auto px-6">

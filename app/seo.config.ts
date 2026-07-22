@@ -1,4 +1,30 @@
-import type { Metadata, Viewport } from 'next';
+export interface Metadata {
+  metadataBase?: URL;
+  title?: any;
+  description?: string;
+  applicationName?: string;
+  authors?: Array<{ name: string; url?: string }>;
+  generator?: string;
+  keywords?: string[];
+  referrer?: string;
+  creator?: string;
+  publisher?: string;
+  formatDetection?: Record<string, boolean>;
+  alternates?: { canonical?: string };
+  openGraph?: Record<string, any>;
+  twitter?: Record<string, any>;
+  robots?: Record<string, any>;
+  icons?: Record<string, any>;
+  category?: string;
+}
+
+export interface Viewport {
+  themeColor?: string;
+  colorScheme?: string;
+  width?: string;
+  initialScale?: number;
+  maximumScale?: number;
+}
 
 /**
  * Master Enterprise SEO Configuration & JSON-LD Schema Engine
