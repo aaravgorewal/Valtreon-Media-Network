@@ -13,6 +13,9 @@ import TrustedBrands from './components/TrustedBrands';
 import StatisticsSection from './components/StatisticsSection';
 import ServicesSection from './components/ServicesSection';
 import CaseStudiesSection from './components/CaseStudiesSection';
+import TestimonialsSection from './components/TestimonialsSection';
+import FaqSection from './components/FaqSection';
+import FinalCtaSection from './components/FinalCtaSection';
 import {
   Menu,
   X,
@@ -178,6 +181,30 @@ export default function App() {
       <CaseStudiesSection
         onScheduleBriefing={() => setIsBottomSheetOpen(true)}
         latency={latency}
+        reducedMotion={reducedMotion}
+        lowPowerMode={lowPowerMode}
+      />
+
+      {/* 10. AUDITED EXECUTIVE TESTIMONIALS & SHOWREEL */}
+      <TestimonialsSection
+        onScheduleBriefing={() => setIsBottomSheetOpen(true)}
+        reducedMotion={reducedMotion}
+        lowPowerMode={lowPowerMode}
+      />
+
+      {/* 11. FREQUENTLY ASKED DIRECTIVES & FAQ */}
+      <FaqSection
+        onScheduleBriefing={() => setIsBottomSheetOpen(true)}
+        reducedMotion={reducedMotion}
+      />
+
+      {/* 12. FINAL SOVEREIGN CTA DIRECTIVE */}
+      <FinalCtaSection
+        onScheduleBriefing={() => setIsBottomSheetOpen(true)}
+        onOpenSimulator={() => {
+          const el = document.getElementById('sim-control-wrapper');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }}
         reducedMotion={reducedMotion}
         lowPowerMode={lowPowerMode}
       />
