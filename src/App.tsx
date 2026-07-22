@@ -10,6 +10,8 @@ import PrivateBriefingForm from './components/PrivateBriefingForm';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import TrustedBrands from './components/TrustedBrands';
+import StatisticsSection from './components/StatisticsSection';
+import ServicesSection from './components/ServicesSection';
 import {
   Menu,
   X,
@@ -145,97 +147,18 @@ export default function App() {
         </div>
       </section>
 
-      {/* 6. IMMERSIVE PERFORMANCE DASHBOARD STAGE (THE PROOF - Dark Cinematic Canvas) */}
-      <section
-        id="performance-dashboard"
-        className="bg-[#080809] border-b border-zinc-900 py-24 text-zinc-300 transition-colors duration-500"
-      >
-        <div className="w-full max-w-7xl mx-auto px-6 space-y-12">
-          
-          {/* Header section display */}
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 border-b border-zinc-900 pb-6">
-            <div>
-              <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-widest block">[ PERFORMANCE_METRIC_ENGINE ]</span>
-              <h2 className="font-sans font-medium text-3xl md:text-4xl text-zinc-100 mt-1">Direct Co-Production Audit</h2>
-            </div>
-            <p className="font-sans text-xs text-zinc-400 max-w-xs leading-relaxed">
-              Real-time campaign telemetry. Tabular alphanumeric counters decrypted at 120Hz under our strict mechanical accuracy standards.
-            </p>
-          </div>
+      {/* 6. IMMERSIVE PERFORMANCE DASHBOARD STAGE & STATISTICS ENGINE */}
+      <StatisticsSection
+        latency={latency}
+        reducedMotion={reducedMotion}
+        lowPowerMode={lowPowerMode}
+      />
 
-          {/* High-Precision Statistics Row (The 4 big statistics columns) */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="dashboard-metric-grids">
-            {METRICS.map(m => (
-              <div
-                key={m.id}
-                id={`metric-bento-card-${m.id}`}
-                className="border border-zinc-900 bg-zinc-950/20 p-5 rounded-none flex flex-col justify-between h-36"
-              >
-                <div className="flex justify-between items-start">
-                  <span className="font-mono text-[9px] text-zinc-500 uppercase tracking-widest">{m.label}</span>
-                  <span className="font-mono text-[9px] text-emerald-500 bg-emerald-950/10 px-1.5 py-0.5 border border-emerald-900/40">
-                    {m.change}
-                  </span>
-                </div>
-
-                <div className="text-3xl font-mono text-zinc-100" id={`metric-value-wrap-${m.id}`}>
-                  <DecryptCounter
-                    value={m.value}
-                    format={m.format}
-                    disabled={reducedMotion || lowPowerMode}
-                  />
-                </div>
-
-                <span className="font-mono text-[8px] text-zinc-600 uppercase tracking-tighter">
-                  [ LEDGER_CODE // SECURE_AUDIT ]
-                </span>
-              </div>
-            ))}
-          </div>
-
-          {/* Interactive Bespoke Charts Section */}
-          <BespokeCharts
-            data={CHART_DATA}
-            demographics={DEMOGRAPHICS}
-            reducedMotion={reducedMotion}
-            lowPowerMode={lowPowerMode}
-          />
-        </div>
-      </section>
-
-      {/* 7. SERVICES SUMMARY SECTION (Asymmetric split-column layout) */}
-      <section id="services-horizon" className="py-24 w-full max-w-7xl mx-auto px-6 border-b border-zinc-200">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          
-          <div className="lg:col-span-4 space-y-4">
-            <span className="font-mono text-[10px] uppercase text-zinc-400 tracking-widest">[ CAPABILITIES // OPERATIONAL_STANDARDS ]</span>
-            <h2 className="font-sans font-medium text-3xl text-zinc-900 leading-tight">Tailored Brand Alignment Tiers</h2>
-            <p className="font-sans text-sm text-zinc-500 leading-relaxed">
-              VMN bypasses mass database matching. We execute full creative lifecycle development inside our dedicated production houses.
-            </p>
-          </div>
-
-          <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-8" id="services-bento-split">
-            {/* Service 1 */}
-            <div className="border-l border-zinc-200 pl-6 space-y-3">
-              <span className="font-mono text-xs text-[#9C8465] font-semibold">[ 01 // NARRATIVE UNDERWRITING ]</span>
-              <h4 className="font-sans font-medium text-lg text-zinc-800">Direct Article & Series Integration</h4>
-              <p className="font-sans text-xs text-zinc-500 leading-relaxed">
-                Sponsor deep editorial research dossiers, artisanal photography series, and documentary essays read by hundreds of thousands of industry specialists.
-              </p>
-            </div>
-
-            {/* Service 2 */}
-            <div className="border-l border-zinc-200 pl-6 space-y-3">
-              <span className="font-mono text-xs text-[#9C8465] font-semibold">[ 02 // VMN STUDIOS PRODUCTIONS ]</span>
-              <h4 className="font-sans font-medium text-lg text-zinc-800">Cinematic B2B Campaigns</h4>
-              <p className="font-sans text-xs text-zinc-500 leading-relaxed">
-                Our in-house design and video directors co-develop widescreen digital spots, physical brand films, and sensory sound installations.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* 7. TAILORED SERVICES & CO-PRODUCTION CAPABILITIES */}
+      <ServicesSection
+        onScheduleBriefing={() => setIsBottomSheetOpen(true)}
+        reducedMotion={reducedMotion}
+      />
 
       {/* 8. CREATIVE ROSTER & PORTFOLIO GRID (Light Stage - Tactile Touch exploration) */}
       <section className="py-24 bg-white border-b border-zinc-200">
